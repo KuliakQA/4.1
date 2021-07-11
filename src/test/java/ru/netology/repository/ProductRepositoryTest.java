@@ -2,14 +2,14 @@ package ru.netology.repository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.netology.domain.Book;
 import ru.netology.domain.NotFoundException;
 import ru.netology.domain.Product;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ProductRepositoryTest {
-    private ProductRepository repository = new ProductRepository();
+    private final ProductRepository repository = new ProductRepository();
     Product first = new Product(1, "apple", 65);
     Product second = new Product(2, "bread", 36);
     Product third = new Product(3, "milk", 50);
@@ -31,8 +31,6 @@ class ProductRepositoryTest {
 
     @Test
     public void removeByNonExistentId() {
-        assertThrows(NotFoundException.class, () -> {
-            repository.removeById(20);
-        });
+        assertThrows(NotFoundException.class, () -> repository.removeById(20));
     }
 }
